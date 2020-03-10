@@ -1,15 +1,20 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
+import java.io.*;
+import java.util.Scanner;
+
 import static java.lang.Character.*;
 
-public class ROT13  {
+public class ROT13 {
 
     private Integer difference;
 
-    ROT13(Character cs, Character cf) {
+    ROT13(Character cs, Character cf) throws FileNotFoundException {
         this.difference = cf - cs;
     }
 
-    ROT13() {
-        this.difference = 0;
+    ROT13() throws FileNotFoundException {
+        this('a', 'm');
     }
 
 
@@ -60,6 +65,7 @@ public class ROT13  {
 
 
     public static String rotate(String s, Character c) {
+
         int i = (c - (int) 'A') % s.length();
         return s.substring(i) + s.substring(0, i);
     }
